@@ -1,8 +1,10 @@
 const axios = require('axios');
 import { safeGet } from './utils';
+import { BASEPATH } from './env';
+
 
 // https://gist.github.com/randomecho/5020859
-const AUS_POSTCODES_URL = '/australian-postcodes.json';
+const AUS_POSTCODES_URL = BASEPATH + '/australian-postcodes.json';
 
 export class PostCodeResolver {
   suburbToPostCode_ = {};

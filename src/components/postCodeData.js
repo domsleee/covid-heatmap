@@ -1,8 +1,10 @@
 const axios = require('axios');
 const csvtojsonV2 = require("csvtojson/v2");
+import { BASEPATH } from './env';
 
 // https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location
-const URL = '/cases-by-postcode.csv';
+
+const URL = BASEPATH + '/cases-by-postcode.csv';
 
 
 export class PostCodeData {
