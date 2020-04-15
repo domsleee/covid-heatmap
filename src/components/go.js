@@ -1,5 +1,6 @@
 import { PostCodeData } from './postCodeData';
 import { PostCodeResolver } from './postCodeResolver';
+import { BASEPATH } from './env';
 
 const myEl = document.createElement('div');
 myEl.classList.add("floatingEl");
@@ -7,6 +8,7 @@ myEl.style.display = "none";
 document.body.appendChild(myEl);
 
 const MAX_CASES = 30;
+const GEOJSON_URL = BASEPATH + '/suburb-10-nsw.geojson';
 
 
 function heatMapColorforValue(value) {
@@ -32,8 +34,7 @@ export async function go() {
   const postCodeResolver = new PostCodeResolver();
   await postCodeResolver.init();
 
-
-  map.data.loadGeoJson('/suburb-10-nsw.geojson');
+  map.data.loadGeoJson(GEOJSON_URL);
 
   map.data.setStyle(function(feature) {
     const postCode = postCodeResolver.getPostCodeFromFeature(feature);
