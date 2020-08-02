@@ -13,26 +13,25 @@ const GEOJSON_URL = BASEPATH + '/suburb-10-nsw.geojson';
 
 function heatMapColorforValue(value) {
   if (value / MAX_CASES > 1.0) {
-    console.log(value);
+    //console.log(value);
   }
   const normalized = Math.min(1.0, value / MAX_CASES);
-  //console.log(value);
   const h = (1.0 - normalized) * 240
   return "hsl(" + h + ", 100%, 50%)";
 }
 
 export async function go() {
+  const postCodeData = new PostCodeData();
+  await postCodeData.init();
+  const postCodeResolver = new PostCodeResolver();
+  await postCodeResolver.init();
+
   var map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 12,
       center: new google.maps.LatLng(-33.8688, 151.2093)
     }
   );
-
-  const postCodeData = new PostCodeData();
-  await postCodeData.init();
-  const postCodeResolver = new PostCodeResolver();
-  await postCodeResolver.init();
 
   map.data.loadGeoJson(GEOJSON_URL);
 
@@ -56,7 +55,6 @@ export async function go() {
 
   map.data.addListener('mousemove', function(event) {
     myEl.style.display = "block";
-    console.log(event);
     const top = event.rb != undefined ? event.rb.clientY : event.clientY;
     const left = event.rb != undefined ? event.rb.clientX : event.clientX;
     myEl.style.top = (top + 5) + "px";
