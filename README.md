@@ -1,5 +1,7 @@
 # heatmap
 
+[Link](https://domsleee.github.io/covid-heatmap/)
+
 ## Project setup
 ```
 npm install

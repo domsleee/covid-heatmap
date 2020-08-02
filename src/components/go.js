@@ -56,9 +56,9 @@ export async function go() {
 
   map.data.addListener('mousemove', function(event) {
     myEl.style.display = "block";
-    //console.log(event);
-    const top = event.rb.clientY;
-    const left = event.rb.clientX;
+    console.log(event);
+    const top = event.rb != undefined ? event.rb.clientY : event.clientY;
+    const left = event.rb != undefined ? event.rb.clientX : event.clientX;
     myEl.style.top = (top + 5) + "px";
     myEl.style.left = (left + 5) + "px";
     const postCode = postCodeResolver.getPostCodeFromFeature(event.feature);
