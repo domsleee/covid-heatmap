@@ -46,7 +46,7 @@ export async function go() {
   map.data.addListener('mousemove', function(event) {
     const properties = event.feature.j;
     myEl.style.display = "block";
-    myEl.innerHTML = `postcode: ${properties.postCode}<br />#cases: ${properties.cases}<br />suburb/s: ${properties.suburb}`;
+    myEl.innerHTML = `Postcode: ${properties.postCode}<br />Cases: ${properties.cases}<br />Suburbs: ${properties.suburb}`;
   });
   
   map.data.addListener('mouseout', function() {
