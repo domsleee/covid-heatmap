@@ -39,12 +39,16 @@ h2, p {
 }
 
 .floatingEl {
+  color: white;
   position: absolute;
-  background: grey;
+  background: #424242;
   display: inline-block;
   left: 0;
   top: 0;
   width: 200px;
-  height: 100px;
+  padding: 2px;
+  border-radius: 4px;
+  min-height: 100px;
+  opacity: 0.95;
 }
 </style>

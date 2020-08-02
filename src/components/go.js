@@ -1,5 +1,3 @@
-import { PostCodeData } from './postCodeData';
-import { PostCodeResolver } from './postCodeResolver';
 import { BASEPATH } from './env';
 
 const myEl = document.createElement('div');
@@ -7,9 +5,8 @@ myEl.classList.add("floatingEl");
 myEl.style.display = "none";
 document.body.appendChild(myEl);
 
-const MAX_CASES = 30;
-const GEOJSON_URL = BASEPATH + '/suburb-10-nsw.geojson';
-
+const MAX_CASES = 42;
+const GEOJSON_URL = BASEPATH + '/suburb-10-nsw-proc.geojson';
 
 function heatMapColorforValue(value) {
   if (value / MAX_CASES > 1.0) {
@@ -21,11 +18,6 @@ function heatMapColorforValue(value) {
 }
 
 export async function go() {
-  const postCodeData = new PostCodeData();
-  await postCodeData.init();
-  const postCodeResolver = new PostCodeResolver();
-  await postCodeResolver.init();
-
   var map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 12,
@@ -34,11 +26,9 @@ export async function go() {
   );
 
   map.data.loadGeoJson(GEOJSON_URL);
-
   map.data.setStyle(function(feature) {
-    const postCode = postCodeResolver.getPostCodeFromFeature(feature);
-    if (postCode == -1) return {};
-    const v = postCodeData.getPostCodeCount(postCode);
+    const properties = feature.j;
+    const v = properties.cases;
     var color = heatMapColorforValue(v);
     return {
       fillColor: color,
@@ -54,9 +44,9 @@ export async function go() {
   })
 
   map.data.addListener('mousemove', function(event) {
-    const postCode = postCodeResolver.getPostCodeFromFeature(event.feature);
+    const properties = event.feature.j;
     myEl.style.display = "block";
-    myEl.innerHTML = "postCode: " + postCode + "<br />#cases: " + postCodeData.getPostCodeCount(postCode) + "<br />suburb: " + postCodeResolver.getSuburbFromFeature(event.feature);
+    myEl.innerHTML = `postcode: ${properties.postCode}<br />#cases: ${properties.cases}<br />suburb/s: ${properties.suburb}`;
   });
   
   map.data.addListener('mouseout', function() {
