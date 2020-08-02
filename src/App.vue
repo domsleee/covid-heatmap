@@ -14,8 +14,14 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -46,8 +52,9 @@ h2, p {
   left: 0;
   top: 0;
   width: 200px;
-  padding: 2px;
-  border-radius: 4px;
+  padding: 5px;
+  font-size: 1em;
+  border-radius: 5px;
   min-height: 100px;
   opacity: 0.95;
 }
