@@ -54,14 +54,9 @@ export async function go() {
   })
 
   map.data.addListener('mousemove', function(event) {
-    myEl.style.display = "block";
-    const top = event.rb != undefined ? event.rb.clientY : event.clientY;
-    const left = event.rb != undefined ? event.rb.clientX : event.clientX;
-    myEl.style.top = (top + 5) + "px";
-    myEl.style.left = (left + 5) + "px";
     const postCode = postCodeResolver.getPostCodeFromFeature(event.feature);
+    myEl.style.display = "block";
     myEl.innerHTML = "postCode: " + postCode + "<br />#cases: " + postCodeData.getPostCodeCount(postCode) + "<br />suburb: " + postCodeResolver.getSuburbFromFeature(event.feature);
-    //console.log("setting style to ", top, left);
   });
   
   map.data.addListener('mouseout', function() {
