@@ -3,10 +3,10 @@
     <p style='margin: 0.75em 0'>Legend</p>
     <ColorStepper :colors="gradient"></ColorStepper>
     <div class='linkcont'>
-      <a href='https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location/resource/21304414-1ff1-4243-a5d2-f52778048b29'>Data source (Data.NSW)</a>
+      <a href='https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location/resource/21304414-1ff1-4243-a5d2-f52778048b29' target="_blank">Data source (Data.NSW)</a>
     </div>
     <div class='linkcont'>
-      <a href='https://github.com/domsleee/covid-heatmap'>github repo</a>
+      <a href='https://github.com/domsleee/covid-heatmap' target="_blank">github repo</a>
     </div>
   </div>
 </template>
