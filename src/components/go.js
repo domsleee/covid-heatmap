@@ -1,11 +1,12 @@
 import { BASEPATH, isDevelopmentEnv } from './env';
+import { LegendDefs } from './LegendDefs';
 
 const myEl = document.createElement('div');
 myEl.classList.add("floatingEl");
 myEl.style.display = "none";
 document.body.appendChild(myEl);
 
-const MAX_CASES = 42;
+const MAX_CASES = 60;
 const HEATMAP_DATA_BASEURL = "https://domsleee.github.io/covid-heatmap-data";
 const GEOJSON_URL = (isDevelopmentEnv ? BASEPATH + '/sample' : HEATMAP_DATA_BASEURL) + '/suburb-10-nsw-proc.geojson';
 let textChangeableState = {
@@ -19,19 +20,24 @@ function isTextChangeable() {
 
 
 function heatMapColorforValue(value) {
-  if (value / MAX_CASES > 1.0) {
+  if (value / LegendDefs.MAX_CASES > 1.0) {
     //console.log(value);
   }
   const normalized = Math.min(1.0, value / MAX_CASES);
   const h = (1.0 - normalized) * 240
-  return "hsl(" + h + ", 100%, 50%)";
+  "hsl(" + h + ", 100%, 50%)";
+
+  // https://colorbrewer2.org/#type=sequential&scheme=YlOrRd&n=9
+  const grad = LegendDefs.LEGEND_GRADIENT;
+  const ind = Math.min(Math.floor((grad.length * value)/LegendDefs.MAX_CASES), grad.length-1);
+  return grad[ind];
 }
 
 export async function go() {
   var map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 12,
-      center: new google.maps.LatLng(-33.8688, 151.2093)
+      center: new google.maps.LatLng(-33.8688, 151.2093),
     }
   );
 
@@ -68,11 +74,13 @@ export async function go() {
   map.data.addListener('mousedown', () => {
     //console.log("map mouse down...");
     textChangeableState.mapMouseDown = true;
-  })
+    window.myEl = myEl;
+  });
+
   map.data.addListener('mouseup', () => {
     //console.log("map mouse up...");
     textChangeableState.mapMouseDown = false;
     textChangeableState.temporarilyOff = true;
     setTimeout(() => textChangeableState.temporarilyOff = false, 50);
-  })
+  });
 }

@@ -1,12 +1,19 @@
 <template>
-  <div id="map" class="map"></div>
+  <div>
+    <Legend />
+    <div id="map" class="map"></div>
+  </div>
 </template>
 
 <script>
 import { go } from './go';
+import Legend from './Legend/Legend.vue'
 
 export default {
   name: 'HelloWorld',
+  components: {
+    Legend
+  },
   props: {
     msg: String
   },
