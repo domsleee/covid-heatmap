@@ -13,10 +13,11 @@ export class PostCodeData {
   suburbToPostCode_ = {};
 
   async init() {
+    console.log(URL);
     const postCodeDataCsv = await axiosInstance.get(URL);
     const postCodeData = await csvtojsonV2({output: "csv"}).fromString(postCodeDataCsv.data);
+    if (postCodeData.length <= 1) throw Error('undefined post code data...');
     for (const [date, postCode] of postCodeData) {
-      //console.log(date, postCode);
       date;
       if (!(postCode in this.postCodeMap_)) this.postCodeMap_[postCode] = 0;
       this.postCodeMap_[postCode]++;

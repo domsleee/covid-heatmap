@@ -3,7 +3,7 @@ import { PostCodeData } from './helpers/postCodeData';
 import { PostCodeResolver } from './helpers/postCodeResolver';
 const path = require('path');
 const dissolve = require('geojson-dissolve');
-const updateSample = true;
+const updateSample = false;
 
 const geojsonFile = path.resolve(__dirname + '/../public/external/suburb-10-nsw.geojson');
 const geojsonOutFile = updateSample
