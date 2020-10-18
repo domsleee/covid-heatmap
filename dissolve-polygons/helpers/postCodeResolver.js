@@ -3,7 +3,7 @@ import { BASEPATH } from './env';
 
 
 // https://gist.github.com/randomecho/5020859
-const AUS_POSTCODES_URL = BASEPATH + '/australian-postcodes.json';
+const AUS_POSTCODES_URL = BASEPATH + '/external/australian-postcodes.json';
 
 export class PostCodeResolver {
   suburbToPostCode_ = {};

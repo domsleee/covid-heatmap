@@ -20,3 +20,5 @@ yarn-error.log*
 *.sln
 *.sw?
 .env
+public/external/cases-by-postcode.csv
+

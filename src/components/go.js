@@ -1,4 +1,4 @@
-import { BASEPATH } from './env';
+import { BASEPATH, isDevelopmentEnv } from './env';
 
 const myEl = document.createElement('div');
 myEl.classList.add("floatingEl");
@@ -6,7 +6,8 @@ myEl.style.display = "none";
 document.body.appendChild(myEl);
 
 const MAX_CASES = 42;
-const GEOJSON_URL = BASEPATH + '/suburb-10-nsw-proc.geojson';
+const HEATMAP_DATA_BASEURL = "https://domsleee.github.io/covid-heatmap-data";
+const GEOJSON_URL = (isDevelopmentEnv ? BASEPATH + '/sample' : HEATMAP_DATA_BASEURL) + '/suburb-10-nsw-proc.geojson';
 
 function heatMapColorforValue(value) {
   if (value / MAX_CASES > 1.0) {

@@ -1,17 +1,24 @@
+import { pathToFileURL } from 'url';
 import { PostCodeData } from './helpers/postCodeData';
 import { PostCodeResolver } from './helpers/postCodeResolver';
+const path = require('path');
 const dissolve = require('geojson-dissolve');
+const updateSample = true;
 
-const geojsonFile = __dirname + '/../public/suburb-10-nsw.geojson';
-const geojsonOutFile = __dirname + '/../public/suburb-10-nsw-proc.geojson';
+const geojsonFile = path.resolve(__dirname + '/../public/external/suburb-10-nsw.geojson');
+const geojsonOutFile = updateSample
+  ? path.resolve(__dirname + '/../public/sample/suburb-10-nsw-proc.geojson')
+  : path.resolve(__dirname + '/../../covid-heatmap-data/docs/suburb-10-nsw-proc.geojson');
 
 
 async function main() {
+  console.log("running...");
   const postCodeResolver = new PostCodeResolver();
   const postCodeData = new PostCodeData();
   await postCodeResolver.init(); // getPostCodeCount(postcode)
   await postCodeData.init(); // getSuburbFromFeature(feature)
 
+  console.log('init successful...');
   const fs = require('fs');
   const postCodeToFeatures = {};
 
