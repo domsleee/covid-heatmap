@@ -5,7 +5,7 @@
         class='step'
         v-for="color in colors"
         :key="color"
-        :style="{ background: color }" />
+        :style="{ background: color, opacity: 0.6 }" />
     </div>
     <div class='stepper' style='padding: 0 4px; box-sizing: border-box;'>
       <div class='step' style='text-align: left'>0</div>

@@ -48,7 +48,8 @@ export async function go() {
     var color = heatMapColorforValue(v);
     return {
       fillColor: color,
-      strokeWeight: 1
+      strokeWeight: 1,
+      fillOpacity: .5,
     };
   });
 
