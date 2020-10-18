@@ -9,7 +9,7 @@
     </div>
     <div class='stepper' style='padding: 0 4px; box-sizing: border-box;'>
       <div class='step' style='text-align: left'>0</div>
-      <div class='step' style='text-align: right'>55+</div>
+      <div class='step' style='text-align: right'>{{maxValue}}+</div>
     </div>
   </div>
 </template>
@@ -18,7 +18,8 @@
 export default {
   name: 'ColorStepper',
   props: {
-    colors: Array
+    colors: Array,
+    maxValue: Number
   },
   mounted() {
   }

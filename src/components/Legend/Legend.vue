@@ -1,7 +1,7 @@
 <template>
   <div class='legend'>
     <p style='margin: 0.75em 0'>Legend</p>
-    <ColorStepper :colors="gradient"></ColorStepper>
+    <ColorStepper :colors="gradient" :maxValue="maxValue"></ColorStepper>
     <div class='linkcont'>
       <a href='https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location/resource/21304414-1ff1-4243-a5d2-f52778048b29' target="_blank">Data source (Data.NSW)</a>
     </div>
@@ -21,7 +21,8 @@ export default {
   },
   data: function() {
     return {
-      gradient: LegendDefs.LEGEND_GRADIENT
+      gradient: LegendDefs.LEGEND_GRADIENT,
+      maxValue: LegendDefs.MAX_CASES
     }
   },
   mounted() {
