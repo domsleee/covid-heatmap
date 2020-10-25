@@ -1,8 +1,13 @@
-# heatmap
+# COVID Heatmap
 
-[Link](https://domsleee.github.io/covid-heatmap/)
+[Live link](https://domsleee.github.io/covid-heatmap/)
+
+[Data repository](https://github.com/domsleee/covid-heatmap-data)
 
 ## Project setup
+Environment variable `VUE_APP_KEY_OVERRIDE` is used to set the google maps API key.
+You need one of these to develop locally
+
 ```
 npm install
 ```
