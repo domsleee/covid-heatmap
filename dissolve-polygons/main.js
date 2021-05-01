@@ -2,8 +2,7 @@ import { PostCodeData } from './helpers/postCodeData';
 import { PostCodeResolver } from './helpers/postCodeResolver';
 const path = require('path');
 const dissolve = require('geojson-dissolve');
-const geojsonFile = path.resolve(__dirname + '/../public/external/suburb-10-nsw.geojson');
-
+const geojsonFile = path.join(__dirname, '/external/suburb-10-nsw.geojson');
 
 async function main() {
   const argv = require('yargs').argv;
@@ -19,8 +18,8 @@ async function main() {
     await postCodeResolver.init(); // getPostCodeCount(postcode)
     await postCodeData.init(); // getSuburbFromFeature(feature)
   } catch (e) {
-    console.log("some error fetching data... Are you running the server of covid-heatmap?");
-    return;
+    console.log("some error fetching data...");
+    throw e;
   }
 
   console.log('init successful...');

@@ -1,1 +1,1 @@
-export const BASEPATH = 'http://localhost:8080/covid-heatmap';
+export const rootDirectory = path.join(__dirname, '/');
