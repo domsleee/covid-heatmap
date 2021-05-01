@@ -6,9 +6,9 @@ const geojsonFile = path.join(__dirname, '/external/suburb-10-nsw.geojson');
 
 async function main() {
   const argv = require('yargs').argv;
-  const geojsonOutFile = argv.updateProcessed
-    ? path.resolve(__dirname + '/../public/proc/suburb-10-nsw-proc.geojson')
-    : path.resolve(__dirname + '/../../covid-heatmap-data/docs/suburb-10-nsw-proc.geojson');
+  const geojsonOutFile = 'outputFile' in argv
+    ? argv.outputFile
+    : path.resolve(__dirname + '/../public/proc/suburb-10-nsw-proc.geojson');
 
   console.log(`updating ${geojsonOutFile}...`);
   const postCodeResolver = new PostCodeResolver();
