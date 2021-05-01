@@ -1,22 +1,27 @@
-import { pathToFileURL } from 'url';
 import { PostCodeData } from './helpers/postCodeData';
 import { PostCodeResolver } from './helpers/postCodeResolver';
 const path = require('path');
 const dissolve = require('geojson-dissolve');
-const updateSample = false;
-
 const geojsonFile = path.resolve(__dirname + '/../public/external/suburb-10-nsw.geojson');
-const geojsonOutFile = updateSample
-  ? path.resolve(__dirname + '/../public/sample/suburb-10-nsw-proc.geojson')
-  : path.resolve(__dirname + '/../../covid-heatmap-data/docs/suburb-10-nsw-proc.geojson');
 
 
 async function main() {
-  console.log("running...");
+  const argv = require('yargs').argv;
+  const geojsonOutFile = argv.updateProcessed
+    ? path.resolve(__dirname + '/../public/proc/suburb-10-nsw-proc.geojson')
+    : path.resolve(__dirname + '/../../covid-heatmap-data/docs/suburb-10-nsw-proc.geojson');
+
+  console.log(`updating ${geojsonOutFile}...`);
   const postCodeResolver = new PostCodeResolver();
   const postCodeData = new PostCodeData();
-  await postCodeResolver.init(); // getPostCodeCount(postcode)
-  await postCodeData.init(); // getSuburbFromFeature(feature)
+
+  try {
+    await postCodeResolver.init(); // getPostCodeCount(postcode)
+    await postCodeData.init(); // getSuburbFromFeature(feature)
+  } catch (e) {
+    console.log("some error fetching data... Are you running the server of covid-heatmap?");
+    return;
+  }
 
   console.log('init successful...');
   const fs = require('fs');
@@ -51,8 +56,7 @@ async function main() {
   }
   fs.writeFileSync(geojsonOutFile, JSON.stringify(outData, null, 1));
 
-
-  //console.log(postCodeToFeatures);
+  console.log(`written result to ${geojsonOutFile}`);
 }
 
 main();
