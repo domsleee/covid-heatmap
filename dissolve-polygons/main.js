@@ -3,6 +3,7 @@ import { PostCodeResolver } from './helpers/postCodeResolver';
 const path = require('path');
 const dissolve = require('geojson-dissolve');
 const geojsonFile = path.join(__dirname, '/external/suburb-10-nsw.geojson');
+const gp = require("geojson-precision");
 
 async function main() {
   const argv = require('yargs').argv;
@@ -43,12 +44,13 @@ async function main() {
   const outData = {type: "FeatureCollection", features: []};
   for (const [postCode, value] of Object.entries(postCodeToFeatures)) {
     value.suburbs = [...value.suburbs];
-    const newFeature = {"type": "Feature", "properties": {"suburb": value.suburbs.join(', ')}};
+    let newFeature = {"type": "Feature", "properties": {"suburb": value.suburbs.join(', ')}};
     if (value.features.length > 1) {
       newFeature.geometry = dissolve(value.features);
     } else {
       newFeature.geometry = value.features[0].geometry;
     }
+    newFeature = gp(newFeature, 6);
     newFeature.properties.cases = postCodeData.getPostCodeCount(postCode);
     newFeature.properties.postCode = postCode;
     outData.features.push(newFeature);

@@ -15,6 +15,7 @@ export async function go() {
 
   map.data.loadGeoJson(GEOJSON_URL);
   map.data.setStyle(function(feature) {
+    console.log("go feature...");
     const v = feature.getProperty('cases');
     var color = heatMapColorforValue(v);
     return {
