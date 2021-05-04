@@ -3,7 +3,7 @@ const ellipsize = require('ellipsize');
 
 export function loadMapbox() {
   let accessToken = process.env.VUE_APP_MAPBOX_API;
-  if (accessToken == null) accessToken = 'pk.eyJ1IjoiZG9tc2xlZSIsImEiOiJja281dHIzamMwdWN5MnByd2U2dHh2dHN3In0.HsDJnEgqjq_Gewlzt6NGew';
+  if (!accessToken) accessToken = 'pk.eyJ1IjoiZG9tc2xlZSIsImEiOiJja281dHIzamMwdWN5MnByd2U2dHh2dHN3In0.HsDJnEgqjq_Gewlzt6NGew';
   mapboxgl.accessToken = accessToken;
   var map = new mapboxgl.Map({
     container: 'map', // container id
