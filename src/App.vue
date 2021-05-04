@@ -58,4 +58,23 @@ h2, p {
   min-height: 100px;
   opacity: 0.95;
 }
+
+/* change background and tip color to green */
+.myFloatingEl .mapboxgl-popup-content {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background: #424242;
+  width: 200px;
+  opacity: 0.95;
+  min-height: 100px;
+  line-height: 1.2em;
+  font-size: 15px;
+  padding: 0.5em;
+}
+.myFloatingEl .mapboxgl-popup-tip {
+  border-top-color: #424242;
+  border-bottom-color: #424242;
+  opacity: 0.95;
+}
+
 </style>

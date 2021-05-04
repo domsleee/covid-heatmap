@@ -13,6 +13,7 @@
     "core-js": "^3.6.4",
     "csvtojson": "^2.0.10",
     "dotenv": "^8.2.0",
+    "ellipsize": "^0.1.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
@@ -38,7 +39,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-undef": 0
+      "no-undef": 0,
+      "no-unused-vars": 0
     }
   },
   "browserslist": [
