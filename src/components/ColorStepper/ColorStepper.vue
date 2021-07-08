@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class='stepper'>
-      <div
-        class='step'
-        v-for="color in colors"
-        :key="color"
-        :style="{ background: color, opacity: 0.6 }" />
+      <template v-for="(color, index) in colors">
+        <div
+          v-tooltip='calcTooltip(index)'
+          class='step'
+          :key="color"
+          :style="{ background: color, opacity: 0.6 }" />
+      </template>
     </div>
     <div class='stepper' style='padding: 0 4px; box-sizing: border-box;'>
       <div class='step' style='text-align: left'>0</div>
@@ -22,7 +24,17 @@ export default {
     maxValue: Number
   },
   mounted() {
+  },
+  methods: {
+    calcTooltip(index) {
+      const numColors = this.colors.length;
+      const l = index;
+      const r = index+1;
+      const fn = t => `${(this.maxValue*t/numColors).toFixed(1)}`;
+      return `${fn(l)} - ${fn(r)}`;
+    }
   }
+
 }
 </script>
 
@@ -38,4 +50,5 @@ div.step {
   min-width: 10px;
   display:inline-block;
 }
+
 </style>

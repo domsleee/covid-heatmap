@@ -1,7 +1,10 @@
 <template>
   <div class='legend'>
-    <p style='margin: 0.75em 0'>Legend</p>
-    <ColorStepper :colors="gradient" :maxValue="maxValue"></ColorStepper>
+    <p>Legend</p>
+    <ColorStepper
+      style="margin-bottom:4px"
+      :colors="gradient"
+      :maxValue="maxValue"></ColorStepper>
     <div class='linkcont'>
       <a href='https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location/resource/21304414-1ff1-4243-a5d2-f52778048b29' target="_blank">Data source (Data.NSW)</a>
     </div>
@@ -32,6 +35,8 @@ export default {
 
 <style scoped>
 div.legend {
+  /*border: 1px solid #999;*/
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   padding: 0 5px;
   position: absolute;
   z-index:500;
@@ -42,6 +47,12 @@ div.legend {
   width: 200px;
   min-height: 100px;
   padding-bottom: 0.75em;
+}
+
+div.legend p {
+  margin: 8px 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 a {
