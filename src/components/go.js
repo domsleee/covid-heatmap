@@ -5,10 +5,17 @@ import { loadMapbox } from './util/MapboxLoader';
 const MODE = 'mapbox';
 
 export async function go() {
-  if (MODE == 'gmaps' || localStorage.useGoogleMaps === 'true') {
+  if (getMode() == 'gmaps') {
     const map = loadGMaps();
     setupFloatingEl(map);
   } else {
     const map = loadMapbox();
   }
+}
+
+export function getMode() {
+  if (MODE == 'gmaps' || localStorage.useGoogleMaps === 'true') {
+    return 'gmaps';
+  }
+  return 'mapbox';
 }

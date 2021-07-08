@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { go } from './go';
+import { go, getMode } from './go';
 import Legend from './Legend/Legend.vue'
 
 export default {
@@ -18,10 +18,13 @@ export default {
     msg: String
   },
   mounted() {
-    let gmapsScript = document.createElement('script');
-    const key = process.env.VUE_APP_KEY_OVERRIDE == null ? 'AIzaSyCdh-fHBN8bfpc_7Au1DnBJSnlWeNIdC68' : process.env.VUE_APP_KEY_OVERRIDE;
-    gmapsScript.setAttribute('src', `https://maps.googleapis.com/maps/api/js?v=3.44.12&key=${key}`)
-    document.head.appendChild(gmapsScript);
+    if (getMode() == 'gmaps') {
+      let gmapsScript = document.createElement('script');
+      const key = process.env.VUE_APP_KEY_OVERRIDE == null ? 'AIzaSyCdh-fHBN8bfpc_7Au1DnBJSnlWeNIdC68' : process.env.VUE_APP_KEY_OVERRIDE;
+      gmapsScript.setAttribute('src', `https://maps.googleapis.com/maps/api/js?v=3.44.12&key=${key}`)
+      document.head.appendChild(gmapsScript);
+    }
+
     async function initialize() {
       await go();
     }

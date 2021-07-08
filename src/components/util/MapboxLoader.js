@@ -67,9 +67,9 @@ function getGradientArray() {
 
 function addPopup(map) {
   const popup = new mapboxgl.Popup({closeButton: false, closeOnClick: false, className: 'myFloatingEl'})
-  .trackPointer()
-  .setHTML('<h1>Hello World!</h1>')
-  .addTo(map);
+    .trackPointer()
+    .setHTML('loading...')
+    .addTo(map);
 
   map.on('mousemove', function (e) {
     var features = map.queryRenderedFeatures(e.point);
