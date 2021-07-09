@@ -19,6 +19,7 @@
 }
 
 /* change background and tip color to green */
+/* must be even pixels: https://github.com/mapbox/mapbox-gl-js/pull/3258#issuecomment-249975324 */
 .myFloatingEl .mapboxgl-popup-content {
   font-family: 'Roboto', sans-serif;
   color: white;
@@ -28,7 +29,7 @@
   min-height: 100px;
   line-height: 1.2em;
   font-size: 15px;
-  padding: 0.5em;
+  padding: 6px;
 }
 .myFloatingEl .mapboxgl-popup-tip {
   border-top-color: #424242;
