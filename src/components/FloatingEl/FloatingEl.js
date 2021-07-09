@@ -1,14 +1,14 @@
-const myEl = document.createElement('div');
-myEl.classList.add("floatingEl");
-myEl.style.display = "none";
-document.body.appendChild(myEl);
-
 let textChangeableState = {
   mapMouseDown: false,
   temporarilyOff: false
 };
 
 export function setupFloatingEl(map) {
+  const myEl = document.createElement('div');
+  myEl.classList.add("floatingEl");
+  myEl.style.display = "none";
+  document.body.appendChild(myEl);
+
   document.body.addEventListener('mousemove', function(event) {
     const top = event.clientY;
     const left = event.clientX;

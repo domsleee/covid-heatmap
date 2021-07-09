@@ -9,8 +9,9 @@ export async function go() {
     const map = loadGMaps();
     setupFloatingEl(map);
   } else {
-    const map = loadMapbox();
+    const map = await loadMapbox();
   }
+  return;
 }
 
 export function getMode() {
