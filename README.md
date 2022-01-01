@@ -2,30 +2,20 @@
 
 [Live link](https://domsleee.github.io/covid-heatmap/)
 
-[Data repository](https://github.com/domsleee/covid-heatmap-data)
+This project uses a data repository that is synced from data from NSW government [here](https://data.nsw.gov.au/data/dataset/covid-19-cases-by-location/resource/21304414-1ff1-4243-a5d2-f52778048b29). This data identifies the number of cases per postcode.
 
-## Project setup
-Environment variable `VUE_APP_KEY_OVERRIDE` is used to set the google maps API key.
-You need one of these to develop locally
+The geojson data that is a polygon for each postcode is a smoothed out version from here:
+https://github.com/tonywr71/GeoJson-Data.
 
-```
-npm install
-```
+## Project structure
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+* `dissolve_polygons`: Scripts use to smooth the geojson data (for size/performance reasons)
+* `src`: Source of client app
+* [Data repository](https://github.com/domsleee/covid-heatmap-data)
+  - repository for synced data
+  - has AWS scripts for syncing
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Setup
+Environment variable `VUE_APP_MAPBOX_API` is used for Mapbox GLJS. You can set this by adding a `.env` file in the root of the project.
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+To run locally, `npm install` and then `npm run serve`.
