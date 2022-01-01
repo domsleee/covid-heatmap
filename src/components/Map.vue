@@ -14,7 +14,7 @@ import { go, getMode } from './go';
 import Legend from './Legend/Legend.vue'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Map',
   components: {
     Legend
   },

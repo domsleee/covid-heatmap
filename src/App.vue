@@ -1,15 +1,15 @@
 <template>
-  <hello-world />
+  <Map />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Map from './components/Map.vue'
 import './assets/css/floatingEl.css';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Map
   }
 }
 </script>
